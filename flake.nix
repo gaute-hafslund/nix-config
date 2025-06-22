@@ -46,25 +46,13 @@
 
     # Define user configurations
     users = {
-      nabokikh = {
+      "gaute.hagen.hallingstad" = {
         avatar = ./files/avatar/face;
-        email = "alexander.nabokikh@olx.pl";
-        fullName = "Alexander Nabokikh";
-        gitKey = "C5810093";
-        name = "nabokikh";
+        email = "gaute.hagen.hallingstad@hafslund.no";
+        fullName = "Gaute Hagen Hallingstad";
+        name = "gaute.hagen.hallingstad";
       };
     };
-
-    # Function for NixOS system configuration
-    mkNixosConfiguration = hostname: username:
-      nixpkgs.lib.nixosSystem {
-        specialArgs = {
-          inherit inputs outputs hostname;
-          userConfig = users.${username};
-          nixosModules = "${self}/modules/nixos";
-        };
-        modules = [./hosts/${hostname}];
-      };
 
     # Function for nix-darwin system configuration
     mkDarwinConfiguration = hostname: username:
@@ -95,19 +83,12 @@
         ];
       };
   in {
-    nixosConfigurations = {
-      energy = mkNixosConfiguration "energy" "nabokikh";
-      nabokikh-z13 = mkNixosConfiguration "nabokikh-z13" "nabokikh";
-    };
-
     darwinConfigurations = {
-      "nabokikh-mac" = mkDarwinConfiguration "nabokikh-mac" "nabokikh";
+      "work-mac" = mkDarwinConfiguration "work-mac" "gaute.hagen.hallingstad";
     };
 
     homeConfigurations = {
-      "nabokikh@energy" = mkHomeConfiguration "x86_64-linux" "nabokikh" "energy";
-      "nabokikh@nabokikh-mac" = mkHomeConfiguration "aarch64-darwin" "nabokikh" "nabokikh-mac";
-      "nabokikh@nabokikh-z13" = mkHomeConfiguration "x86_64-linux" "nabokikh" "nabokikh-z13";
+      "gaute.hagen.hallingstad@work-mac" = mkHomeConfiguration "aarch64-darwin" "gaute.hagen.hallingstad" "work-mac";
     };
 
     overlays = import ./overlays {inherit inputs;};

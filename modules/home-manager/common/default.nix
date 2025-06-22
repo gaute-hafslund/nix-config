@@ -21,15 +21,10 @@
     ../programs/krew
     ../programs/lazygit
     ../programs/neovim
-    ../programs/obs-studio
-    ../programs/saml2aws
     ../programs/starship
-    ../programs/telegram
     ../programs/tmux
-    ../programs/ulauncher
     ../programs/zsh
     ../scripts
-    ../services/flatpak
   ];
 
   # Nixpkgs configuration
@@ -59,7 +54,6 @@
   home.packages = with pkgs;
     [
       anki-bin
-      awscli2
       dig
       du-dust
       eza
@@ -73,18 +67,10 @@
       python3
       ripgrep
       terraform
-    ]
-    ++ lib.optionals stdenv.isDarwin [
       colima
       docker
       hidden-bar
       raycast
-    ]
-    ++ lib.optionals (!stdenv.isDarwin) [
-      pavucontrol
-      tesseract
-      unzip
-      wl-clipboard
     ];
 
   # Catpuccin flavor and accent
