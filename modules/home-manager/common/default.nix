@@ -44,10 +44,7 @@
   # Home-Manager configuration for the user's home environment
   home = {
     username = "${userConfig.name}";
-    homeDirectory =
-      if pkgs.stdenv.isDarwin
-      then "/Users/${userConfig.name}"
-      else "/home/${userConfig.name}";
+    homeDirectory = "/Users/${userConfig.name}";
   };
 
   # Ensure common packages are installed
